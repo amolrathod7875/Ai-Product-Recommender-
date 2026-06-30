@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './App.css'; // MUST IMPORT THIS FOR ANIMATIONS
 import { MOCK_PRODUCTS } from './data/mockData';
 import { fetchAIRecommendations } from './services/aiService';
 import ProductCard from './components/ProductCard';
@@ -27,7 +28,7 @@ export default function App() {
         const filtered = MOCK_PRODUCTS.filter(product => recommendedIds.includes(product.id));
         setDisplayedProducts(filtered);
       } else {
-        setDisplayedProducts([]); // AI found no matches
+        setDisplayedProducts([]); 
       }
     } catch (err) {
       setError(err.message);
@@ -37,8 +38,8 @@ export default function App() {
   };
 
   return (
-    <div style={{ maxWidth: '900px', margin: '40px auto', padding: '20px', fontFamily: 'system-ui, sans-serif' }}>
-      <h1 style={{ textAlign: 'center', marginBottom: '30px' }}>Smart Product Finder</h1>
+    <div className="container" style={{ maxWidth: '900px', margin: '40px auto', padding: '20px', fontFamily: 'system-ui, sans-serif' }}>
+      <h1 className="title">Smart Product Finder</h1>
       
       <SearchBar 
         userInput={userInput} 
@@ -47,9 +48,9 @@ export default function App() {
         isLoading={isLoading} 
       />
 
-      {error && <p style={{ color: '#d32f2f', padding: '10px', backgroundColor: '#ffebee', borderRadius: '4px' }}>{error}</p>}
+      {error && <p style={{ color: '#d32f2f', padding: '10px', backgroundColor: '#ffebee', borderRadius: '4px', textAlign: 'center' }}>{error}</p>}
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '20px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '30px' }}>
         {displayedProducts.length > 0 ? (
           displayedProducts.map(product => (
             <ProductCard key={product.id} product={product} />

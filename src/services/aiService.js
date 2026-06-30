@@ -2,7 +2,7 @@ import { MOCK_PRODUCTS } from '../data/mockData';
 
 export const fetchAIRecommendations = async (userInput) => {
   // Vite exposes env variables using import.meta.env
-  const apiKey = import.meta.env.VITE_CEREBRAS_API_KEY;
+  const apiKey = import.meta.env.VITE_CEREBRAS_API_KEY.trim();
 
   if (!apiKey) {
     throw new Error("API Key is missing. Please add it to your .env file.");
